@@ -1,0 +1,13 @@
+- hosts: worker_raspi
+  remote_user: life
+  strategy: free
+  tasks:
+  - name: iperf1
+    shell: iperf -t 20 -c 192.168.2.10
+    when: ansible_host == '192.168.2.13'
+  - name: iperf2
+    shell: iperf -t 20 -c 192.168.2.11
+    when: ansible_host == '192.168.2.14'
+  - name: iperf3
+    shell: iperf -t 20 -c 192.168.2.12
+    when: ansible_host == '192.168.2.15'
